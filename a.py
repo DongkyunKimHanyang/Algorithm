@@ -1,7 +1,6 @@
 import sys
 
-
-
+a = 1
 def bfs(x,y):
     dir_x_odd = [-1, -1, 0, 0, 1, 1]
     dir_y_odd = [0, 1, -1, 1, 0, 1]
