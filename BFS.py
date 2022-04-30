@@ -2,6 +2,7 @@ from collections import deque
 def BFS(graph,v,visited):
     q = deque()
     q.append(v)
+    visited[v] = True
     while q:
         v = q.popleft()
         print(v, end = ' ')
