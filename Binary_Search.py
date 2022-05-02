@@ -37,7 +37,7 @@ for i, element in enumerate(array):
     idx = bisect_left(lis_list, element)
     lis_list[idx] = element
     lis_idx_list.append(idx)
-print(bisect_left(lis_list,10001))
+print(bisect_left(lis_list,sys.maxsize))
 
 result = []
 end = max(lis_idx_list)
