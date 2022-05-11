@@ -1,9 +1,9 @@
 import sys
 #최소 신장 트리를 만드는 알고리즘
 #최소 신장 트리: 모든 노드는 서로 도달이 가능하며 싸이클이 없고 간선 비용의 합이 최소인 그래프
-def find_parent(parent,x):
-    if x != parent[x]:
-        parent[x] = find_parent(parent,x)
+def find_parent(parent,x):#루트 찾기
+    if parent[x] !=x:
+        parent[x] = find_parent(parent,parent[x])
     return parent[x]
 def union_parent(parent,a,b):
     a = find_parent(parent,a)
