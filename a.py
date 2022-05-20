@@ -1,29 +1,35 @@
+
 import sys
-from copy import deepcopy
-input = sys.stdin.readline
 INF = sys.maxsize
+input = sys.stdin.readline
 
-N = int(input())
+N, E = map(int, input().split())
 
-graph = [[INF]*(N+1)for _ in range(N+1)]
+edges=[]
 
-for i in range(1,N+1):
-    edges = list(map(int,input().split()))
-    for j,e in enumerate(edges):
-        if e == 1:
-            graph[i][j+1] = 1
+for _ in range(E):
+    a,b,c = map(int,input().split())
+    edges.append((a,b,c))
 
+distance = [INF] * (N + 1)
+negative_cycle = False
+distance[1] = 0
 
+for i in range(n):
+for i,edge in enumerate(edges):
+    curr_node, next_node, cost = edge
+    if distance[curr_node] != INF and distance[curr_node] + cost < distance[next_node]:
+        distance[next_node] = distance[curr_node] + cost
+        if i == N-1:
+            negative_cycle = True
 
-for k in range(1,N+1):
-    for i in range(1, N + 1):
-        for j in range(1, N + 1):
-            graph[i][j] = min(graph[i][j],graph[i][k]+graph[k][j])
-
-for i in range(1, N + 1):
-    for j in range(1, N + 1):
-        if graph[i][j] == INF:
-            print(0,end=" ")
+if negative_cycle:
+    print(-1)
+    exit()
+else:
+    for d in distance[2:]:
+        if d == INF:
+            print(-1)
         else:
-            print(1, end=" ")
-    print()
+            print(d)
+

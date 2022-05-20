@@ -16,8 +16,9 @@ negative_cycle = False
 dist[start] = 0
 
 for i in range(n):
-    for current_node, next_node, weight in edges:
-        if dist[current_node] != INF and dist[next_node] < dist[current_node] + weight:
-            dist[next_node] = dist[current_node] + weight
-            if i == n-1:
-                negative_cycle= True
+    for j in range(m):
+        for current_node, next_node, weight in edges:
+            if dist[current_node] != INF and dist[next_node] > dist[current_node] + weight:
+                dist[next_node] = dist[current_node] + weight
+                if i == n-1:
+                    negative_cycle= True
