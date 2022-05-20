@@ -15,21 +15,22 @@ distance = [INF] * (N + 1)
 negative_cycle = False
 distance[1] = 0
 
-for i in range(n):
-for i,edge in enumerate(edges):
-    curr_node, next_node, cost = edge
-    if distance[curr_node] != INF and distance[curr_node] + cost < distance[next_node]:
-        distance[next_node] = distance[curr_node] + cost
-        if i == N-1:
-            negative_cycle = True
+for i in range(N):
+    for j in range(E):
+        for edge in edges:
+            curr_node, next_node, cost = edge
+            if distance[curr_node] != INF and distance[curr_node] + cost < distance[next_node]:
+                distance[next_node] = distance[curr_node] + cost
+                if i == N-1:
+                    negative_cycle = True
 
 if negative_cycle:
     print(-1)
-    exit()
 else:
-    for d in distance[2:]:
-        if d == INF:
+    for i in range(2, N + 1):
+        # 도달할 수 없는 경우
+        if distance[i] == INF:
             print(-1)
+        # 도달 가능한 경우
         else:
-            print(d)
-
+            print(distance[i])
